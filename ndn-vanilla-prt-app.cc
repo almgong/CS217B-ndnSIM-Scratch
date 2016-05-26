@@ -1,13 +1,13 @@
 #include "ns3/core-module.h"
-#include "nds/network-module.h"
-#include "ns3/ndnSIM-moduke.h"
-
+#include "ns3/network-module.h"
+#include "ns3/ndnSIM-module.h"
+#include <iostream>
 namespace ns3 {
 	int main(int argc, char**argv) {
-		std::cout << "hello" << end;
+		std::cout << "hello\n";
+		return 0;
 	}
 
-	return 0;
 }
 
 int
