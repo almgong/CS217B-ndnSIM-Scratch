@@ -18,7 +18,7 @@ namespace ns3 {
 	TypeId 
 	ConsumerPRT::GetTypeId()
 	{
-		static TypeId tid = TypeId("ConsumerPRT").SetParent<ndn::App>().AddConstructor<ConsumerPRT>();
+		static TypeId tid = TypeId("ns3::ndn::ConsumerPRT").SetParent<ndn::App>().AddConstructor<ConsumerPRT>();
   		return tid;
 	}
 

@@ -26,7 +26,7 @@ namespace ns3 {
 		ndnHelper.InstallAll();
 
 		// App1
-		ndn::AppHelper app1("ConsumerPRT");
+		ndn::AppHelper app1("ns3::ndn::ConsumerPRT");
 		app1.Install(node);
 
 		// App2
