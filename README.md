@@ -2,7 +2,21 @@
 
 This directory should be in: [...]/ndnSIM/ns-3/scratch
 
-Put all simulations (.cc) files in this directory and running ./waf should automatically build the simulation. If you include the optimize flag then I think debugging wont show, so don't do that for testing purposes.
+./waf should automatically build the simulation. If you include the optimize flag then I think debugging wont show, so don't do that for testing purposes.
+
+Things to keep in mind:
+
+- All cpp source files should have the .cc extension (who knows why the compiler refuses
+to ackownledge .cpp).
+
+- for each SCENARIO, make a new directory under the [...]/scratch/ directory, such as
+ndn-prt-vanilla, and put all relevant .cc and .hpp files here. The compiler and linker
+treats this entire directory as ONE scenario, and thus, only one instance of a main
+function should be in here (across all files).
+
+- ./waf compiles and links everything as long as your follow the above
+
+- ./waf --run <scenario name (e.g. ndn-prt-vanilla) runs the scenario
 
 Check out ndnsim.net/2.1/examples/html for good examples, we probably can just do the 9 grid example, but with our own needs.
 
