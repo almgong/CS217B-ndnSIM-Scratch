@@ -35,8 +35,6 @@ namespace ns3 {
 		private:
 		  void
 		  SendInterest();
-};
-
 	};
 
 }
