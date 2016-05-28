@@ -30,7 +30,7 @@ namespace ns3 {
 		app1.Install(node);
 
 		// App2
-		ndn::AppHelper app2("Hijacker");
+		ndn::AppHelper app2("ns3::ndn::ConsumerPRT");
 		app2.Install(node); // last node
 
 		Simulator::Stop(Seconds(20.0));
