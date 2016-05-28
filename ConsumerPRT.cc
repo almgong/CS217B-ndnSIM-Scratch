@@ -27,8 +27,8 @@ namespace ns3 {
 	ConsumerPRT::StartApplication()
 	{
 		ndn::App::StartApplication();
-		ndn::FibHelper::Addroute(GetNode(), "/prefix/sub", m_face, 0);
-		Simulator::Schedule(Seconds(1.0), &ConsumerPRT::SendInterest);
+		ndn::FibHelper::AddRoute(GetNode(), "/prefix/sub", m_face, 0);
+		Simulator::Schedule(Seconds(1.0), &ConsumerPRT::SendInterest, this);
 	}
 
 	// Processing when application is stopped
