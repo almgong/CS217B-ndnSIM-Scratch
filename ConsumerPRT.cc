@@ -33,14 +33,14 @@ namespace ns3 {
 
 	// Processing when application is stopped
 	void
-	CustomApp::StopApplication()
+	ConsumerPRT::StopApplication()
 	{
 	  // cleanup ndn::App
 	  ndn::App::StopApplication();
 	}
 
 	void
-	CustomApp::SendInterest()
+	ConsumerPRT::SendInterest()
 	{
 	  /////////////////////////////////////
 	  // Sending one Interest packet out //
@@ -62,7 +62,7 @@ namespace ns3 {
 
 	// Callback that will be called when Data arrives
 	void
-	CustomApp::OnData(std::shared_ptr<const ndn::Data> data)
+	ConsumerPRT::OnData(std::shared_ptr<const ndn::Data> data)
 	{
 	  NS_LOG_DEBUG("Receiving Data packet for " << data->getName());
 
