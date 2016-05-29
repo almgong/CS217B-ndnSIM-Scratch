@@ -140,15 +140,15 @@ namespace ns3 {
     }
 
     //
-    shared_ptr<ndn::Name> nameWithSequence = make_shared<Name>(m_interestName);
+    std::shared_ptr<ndn::Name> nameWithSequence = std::make_shared<ndn::Name>(m_interestName);
     nameWithSequence->appendSequenceNumber(seq);
     //
 
     // shared_ptr<Interest> interest = make_shared<Interest> ();
-    shared_ptr<ndn::Interest> interest = make_shared<Interest>();
+    std::shared_ptr<ndn::Interest> interest = std::make_shared<ndn::Interest>();
     interest->setNonce(m_rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
     interest->setName(*nameWithSequence);
-    time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
+    ndn::time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
     interest->setInterestLifetime(interestLifeTime);
 
     // NS_LOG_INFO ("Requesting Interest: \n" << *interest);
