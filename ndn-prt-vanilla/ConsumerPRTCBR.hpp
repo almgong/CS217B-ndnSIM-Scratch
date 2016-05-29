@@ -3,6 +3,14 @@
 
 #include "ns3/ndnSIM/apps/ndn-consumer-cbr.hpp"
 
+#include <set>
+#include <map>
+
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/tag.hpp>
+#include <boost/multi_index/ordered_index.hpp>
+#include <boost/multi_index/member.hpp>
+
 /**
  * Make your life easier, inherit defaults of ns3::ndn::ConsumerCBR
 ***/
