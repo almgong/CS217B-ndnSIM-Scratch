@@ -10,7 +10,7 @@
 namespace ns3 {
 
 
-	class ConsumerPRTCBR : public ndn::ConsumerCBR {
+	class ConsumerPRTCBR : public ndn::ConsumerCbr {
 
 	};
 
