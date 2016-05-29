@@ -10,9 +10,10 @@
 #include "ns3/uinteger.h"
 #include "ns3/integer.h"
 #include "ns3/double.h"
-#include "ns3/ndn-app-face.h"
-#include "ns3/ndn-interest.h"
-#include "ns3/ndn-data.h"
+
+//#include "ns3/ndn-app-face.h"
+//#include "ns3/ndn-interest.h"
+//#include "ns3/ndn-data.h"
 
 #include "ns3/ndnSIM/helper/ndn-stack-helper.hpp"
 #include "ns3/ndnSIM/helper/ndn-fib-helper.hpp"
