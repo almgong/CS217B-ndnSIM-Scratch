@@ -22,7 +22,7 @@ namespace ns3 {
 		class ConsumerPRTCBR : public ndn::ConsumerCbr {
 			public:
 				static TypeId GetTypeId();
-				void OnData(ndn::shared_ptr<const ndn::Data> data);
+				void OnData(std::shared_ptr<const ndn::Data> data);
 				void SendPacket();
 		};
 

@@ -65,7 +65,7 @@ namespace ns3 {
   //Process incoming packets 
   //override ndn-consumer            
   void
-  ConsumerPRTCBR::OnData(ndn::shared_ptr<const ndn::Data> data)
+  ConsumerPRTCBR::OnData(std::shared_ptr<const ndn::Data> data)
   {
     if (!m_active)
       return;
@@ -81,9 +81,9 @@ namespace ns3 {
     NS_LOG_INFO("< DATA for " << seq);
 
     int hopCount = 0;
-    auto ns3PacketTag = data->getTag<Ns3PacketTag>();
+    auto ns3PacketTag = data->getTag<ndn::Ns3PacketTag>();
     if (ns3PacketTag != nullptr) { // e.g., packet came from local node's cache
-      FwHopCountTag hopCountTag;
+      ndn::FwHopCountTag hopCountTag;
       if (ns3PacketTag->getPacket()->PeekPacketTag(hopCountTag)) {
         hopCount = hopCountTag.Get();
         NS_LOG_DEBUG("Hop count: " << hopCount);
@@ -140,12 +140,12 @@ namespace ns3 {
     }
 
     //
-    shared_ptr<Name> nameWithSequence = make_shared<Name>(m_interestName);
+    shared_ptr<ndn::Name> nameWithSequence = make_shared<Name>(m_interestName);
     nameWithSequence->appendSequenceNumber(seq);
     //
 
     // shared_ptr<Interest> interest = make_shared<Interest> ();
-    shared_ptr<Interest> interest = make_shared<Interest>();
+    shared_ptr<ndn::Interest> interest = make_shared<Interest>();
     interest->setNonce(m_rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
     interest->setName(*nameWithSequence);
     time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
