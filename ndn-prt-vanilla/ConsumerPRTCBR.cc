@@ -65,7 +65,7 @@ namespace ns3 {
   //Process incoming packets 
   //override ndn-consumer            
   void
-  ConsumerPRTCBR::OnData(shared_ptr<const Data> data)
+  ConsumerPRTCBR::OnData(ndn::shared_ptr<const ndn::Data> data)
   {
     if (!m_active)
       return;

@@ -18,16 +18,14 @@
 ***/
 
 namespace ns3 {
-	namespace ndn {
 
 		class ConsumerPRTCBR : public ndn::ConsumerCbr {
 			public:
 				static TypeId GetTypeId();
-				void OnData(shared_ptr<const nsData> data);
+				void OnData(ndn::shared_ptr<const ndn::Data> data);
 				void SendPacket();
 		};
 
-	}
 }
 
 #endif
