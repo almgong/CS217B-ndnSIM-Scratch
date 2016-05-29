@@ -12,7 +12,7 @@ namespace ns3 {
 	* (e.g., regular consumers, "bad producers") before running this.
 	**/
 	int main(int argc, char**argv) {
-		std::cout << "hello\n";
+		/*std::cout << "hello\n";
 		// Read optional command-line parameters (e.g., enable visualizer with ./waf --run=<> --visualize
 		CommandLine cmd;
 		cmd.Parse(argc, argv);
@@ -32,6 +32,59 @@ namespace ns3 {
 		// App2
 		ndn::AppHelper app2("ns3::ndn::ConsumerPRT");
 		app2.Install(node); // last node
+
+		*/
+
+
+		//3x3 ndn grid
+		// Setting default parameters for PointToPoint links and channels
+		Config::SetDefault("ns3::PointToPointNetDevice::DataRate", StringValue("1Mbps"));
+		Config::SetDefault("ns3::PointToPointChannel::Delay", StringValue("10ms"));
+		Config::SetDefault("ns3::DropTailQueue::MaxPackets", StringValue("10"));
+
+		// Read optional command-line parameters (e.g., enable visualizer with ./waf --run=<> --visualize
+		CommandLine cmd;
+		cmd.Parse(argc, argv);
+
+		// Creating 3x3 topology
+		PointToPointHelper p2p;
+		PointToPointGridHelper grid(3, 3, p2p);
+		grid.BoundingBox(100, 100, 200, 200);
+
+		// Install NDN stack on all nodes
+		ndn::StackHelper ndnHelper;
+		ndnHelper.InstallAll();
+
+		// Set BestRoute strategy
+		ndn::StrategyChoiceHelper::InstallAll("/", "/localhost/nfd/strategy/best-route");
+
+		// Installing global routing interface on all nodes
+		ndn::GlobalRoutingHelper ndnGlobalRoutingHelper;
+		ndnGlobalRoutingHelper.InstallAll();
+
+		// Getting containers for the consumer/producer
+		Ptr<Node> producer = grid.GetNode(2, 2);
+		NodeContainer consumerNodes;
+		consumerNodes.Add(grid.GetNode(0, 0));
+
+		// Install NDN applications
+		std::string prefix = "/prefix";
+
+		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerCbr");
+		consumerHelper.SetPrefix(prefix);
+		consumerHelper.SetAttribute("Frequency", StringValue("100")); // 100 interests a second
+		consumerHelper.Install(consumerNodes);
+
+		ndn::AppHelper producerHelper("ns3::ndn::Producer");
+		producerHelper.SetPrefix(prefix);
+		producerHelper.SetAttribute("PayloadSize", StringValue("1024"));
+		producerHelper.Install(producer);
+
+		// Add /prefix origins to ndn::GlobalRouter
+		ndnGlobalRoutingHelper.AddOrigins(prefix, producer);
+
+		// Calculate and install FIBs
+		ndn::GlobalRoutingHelper::CalculateRoutes();
 
 		Simulator::Stop(Seconds(20.0));
 
