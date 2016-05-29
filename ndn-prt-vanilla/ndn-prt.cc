@@ -67,10 +67,10 @@ namespace ns3 {
 		ndnGlobalRoutingHelper.InstallAll();
 
 		// Getting containers for the consumer/producer
-		Ptr<Node> producer = grid.GetNode(3, 2);
+		Ptr<Node> producer = grid.GetNode(3, 3);
 		NodeContainer consumerNodes;
 		consumerNodes.Add(grid.GetNode(0, 0));
-		consumerNodes.Add(grid.GetNode(1,1));
+		consumerNodes.Add(grid.GetNode(0,3));
 
 		// Install NDN applications
 		std::string prefix = "/prefix";

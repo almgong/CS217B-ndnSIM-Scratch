@@ -142,6 +142,7 @@ namespace ns3 {
     //
     std::shared_ptr<ndn::Name> nameWithSequence = std::make_shared<ndn::Name>(m_interestName);
     nameWithSequence->appendSequenceNumber(seq);
+    std::cout << *nameWithSequence << std::endl;
     //
 
     // shared_ptr<Interest> interest = make_shared<Interest> ();
