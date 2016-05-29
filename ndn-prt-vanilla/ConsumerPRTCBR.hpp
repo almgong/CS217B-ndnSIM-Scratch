@@ -11,7 +11,9 @@ namespace ns3 {
 
 
 	class ConsumerPRTCBR : public ndn::ConsumerCbr {
-
+		public:
+			static TypeId
+    		ConsumerPRTCBR::GetTypeId();
 	};
 
 
