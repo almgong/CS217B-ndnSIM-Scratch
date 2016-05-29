@@ -2,7 +2,7 @@
 #include "ns3/network-module.h"
 #include "ns3/ndnSIM-module.h"
 #include <iostream>
-#include "consumerPRT.hpp"
+#include "ConsumerPRT.hpp"
 
 namespace ns3 {
 
