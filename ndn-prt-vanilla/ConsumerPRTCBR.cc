@@ -14,12 +14,12 @@ NS_LOG_COMPONENT_DEFINE("ConsumerPRTCBR");
 
 namespace ns3 {
 
-	NS_OBJECT_ENSURE_REGISTERED(ConsumerPRT);
+	NS_OBJECT_ENSURE_REGISTERED(ConsumerPRTCBR);
 
 	TypeId 
 	ConsumerPRT::GetTypeId()
 	{
-		static TypeId tid = TypeId("ns3::ndn::ConsumerPRT").SetParent<ndn::App>().AddConstructor<ConsumerPRT>();
+		static TypeId tid = TypeId("ns3::ndn::ConsumerPRTCBR").SetParent<ndn::ConsumerCBR>().AddConstructor<ConsumerPRTCBR>();
   		return tid;
 	}
 
