@@ -41,7 +41,7 @@ namespace ns3 {
         
         .AddAttribute ("Randomize", "Type of send time randomization: none (default), uniform, exponential",
                        StringValue ("none"),
-                       MakeStringAccessor (&ConsumerPRTCBR::SetRandomize, &ConsumerCbr::GetRandomize),
+                       MakeStringAccessor (&ConsumerPRTCBR::SetRandomize, &ConsumerPRTCBR::GetRandomize),
                        MakeStringChecker ())
     
         .AddAttribute ("MaxSeq",

@@ -75,7 +75,7 @@ namespace ns3 {
 		// Install NDN applications
 		std::string prefix = "/prefix";
 
-		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerCBR");
+		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerPRTCBR");
 		consumerHelper.SetPrefix(prefix);
 		consumerHelper.SetAttribute("Frequency", StringValue("100")); // 100 interests a second
 		consumerHelper.Install(consumerNodes);
