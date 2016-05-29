@@ -52,7 +52,7 @@ namespace ns3 {
 
 		// Creating 3x3 topology
 		PointToPointHelper p2p;
-		PointToPointGridHelper grid(3, 3, p2p);
+		PointToPointGridHelper grid(4, 4, p2p);
 		grid.BoundingBox(100, 100, 200, 200);
 
 		// Install NDN stack on all nodes
@@ -67,14 +67,15 @@ namespace ns3 {
 		ndnGlobalRoutingHelper.InstallAll();
 
 		// Getting containers for the consumer/producer
-		Ptr<Node> producer = grid.GetNode(2, 2);
+		Ptr<Node> producer = grid.GetNode(3, 2);
 		NodeContainer consumerNodes;
 		consumerNodes.Add(grid.GetNode(0, 0));
+		consumerNodes.Add(grid.GetNode(1,1));
 
 		// Install NDN applications
 		std::string prefix = "/prefix";
 
-		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerCbr");
+		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerPRT");
 		consumerHelper.SetPrefix(prefix);
 		consumerHelper.SetAttribute("Frequency", StringValue("100")); // 100 interests a second
 		consumerHelper.Install(consumerNodes);
