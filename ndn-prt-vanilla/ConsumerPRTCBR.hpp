@@ -13,6 +13,8 @@ namespace ns3 {
 	class ConsumerPRTCBR : public ndn::ConsumerCbr {
 		public:
 			static TypeId GetTypeId();
+			void OnData(shared_ptr<const Data> data);
+			void SendPacket();
 	};
 
 

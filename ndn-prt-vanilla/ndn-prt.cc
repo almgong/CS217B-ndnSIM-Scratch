@@ -77,7 +77,7 @@ namespace ns3 {
 
 		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerPRTCBR");
 		consumerHelper.SetPrefix(prefix);
-		consumerHelper.SetAttribute("Frequency", StringValue("100")); // 100 interests a second
+		consumerHelper.SetAttribute("Frequency", StringValue("10")); // 10 interests a second
 		consumerHelper.Install(consumerNodes);
 
 		ndn::AppHelper producerHelper("ns3::ndn::Producer");
