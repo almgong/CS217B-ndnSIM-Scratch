@@ -166,14 +166,14 @@ namespace ns3 {
 
   //meant to send a single interest packet, can use as alternative to report
   void
-  ConsumerPRT::SendInterest(const char** prefix)
+  ConsumerPRTCBR::SendInterest()
   {
     /////////////////////////////////////
     // Sending one Interest packet out //
     /////////////////////////////////////
 
     // Create and configure ndn::Interest
-    auto interest = std::make_shared<ndn::Interest>(prefix);
+    auto interest = std::make_shared<ndn::Interest>("/prefix/report");
     Ptr<UniformRandomVariable> rand = CreateObject<UniformRandomVariable>();
     interest->setNonce(rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
     interest->setInterestLifetime(ndn::time::seconds(1));
