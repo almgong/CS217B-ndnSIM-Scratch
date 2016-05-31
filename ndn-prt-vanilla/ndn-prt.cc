@@ -91,7 +91,7 @@ namespace ns3 {
 
 		// Calculate and install FIBs
 		ndn::GlobalRoutingHelper::CalculateRoutes();
-		NS_LOG_DEBUG("Left router of producer " << grid.GetNode(3,2));
+		std::cout << "Left router of producer " << grid.GetNode(3,2) << std::endl;
 		Simulator::Stop(Seconds(10.0));
 
 		Simulator::Run();

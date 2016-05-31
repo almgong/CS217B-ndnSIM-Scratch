@@ -69,7 +69,7 @@ namespace ns3 {
   {
     if (!m_active)
       return;
-
+    std::cout << "data received for this interest@@@@@@@@@@@" << std::endl;
     App::OnData(data); // tracing inside
 
     NS_LOG_FUNCTION(this << data);
@@ -78,7 +78,7 @@ namespace ns3 {
 
     // This could be a problem......
     uint32_t seq = data->getName().at(-1).toSequenceNumber();
-    NS_LOG_INFO("< DATA for " << seq);
+    NS_LOG_INFO("< DATA for " << data->getName());
 
     int hopCount = 0;
     auto ns3PacketTag = data->getTag<ndn::Ns3PacketTag>();
