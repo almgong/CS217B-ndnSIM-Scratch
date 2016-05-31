@@ -24,6 +24,7 @@ namespace ns3 {
 				static TypeId GetTypeId();
 				void OnData(std::shared_ptr<const ndn::Data> data);
 				void SendPacket();
+				void SendInterest(const char** prefix);
 		};
 
 }

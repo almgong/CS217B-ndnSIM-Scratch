@@ -73,7 +73,7 @@ namespace ns3 {
 		consumerNodes.Add(grid.GetNode(0,3));
 
 		// Install NDN applications
-		std::string prefix = "/prefix";
+		std::string prefix = "/ndn/prefix";
 
 		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerPRTCBR");
 		consumerHelper.SetPrefix(prefix);
@@ -90,8 +90,8 @@ namespace ns3 {
 
 		// Calculate and install FIBs
 		ndn::GlobalRoutingHelper::CalculateRoutes();
-
-		Simulator::Stop(Seconds(20.0));
+		NS_LOG_DEBUG("Left router of producer " << grid.GetNode(3,2));
+		Simulator::Stop(Seconds(10.0));
 
 		Simulator::Run();
 		Simulator::Destroy();
