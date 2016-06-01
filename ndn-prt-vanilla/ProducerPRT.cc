@@ -12,6 +12,7 @@
 #include "ns3/double.h"
 
 namespace ns3 {
+namespace ndn {
 	NS_LOG_COMPONENT_DEFINE("ProducerPRT");
 
 	TypeId
@@ -49,8 +50,8 @@ namespace ns3 {
 		return tid;
 	}
 
-	virtual void
-	ProducerPRT::OnInterest(std::shared_ptr<const ndn::Interest> interest) {
+	void
+	ProducerPRT::OnInterest(std::shared_ptr<const Interest> interest) {
 		App::OnInterest(interest); // tracing inside
 
 		NS_LOG_FUNCTION(this << interest);
@@ -58,11 +59,11 @@ namespace ns3 {
 		if (!m_active)
 		return;
 
-		ndn::Name dataName(interest->getName());
+		Name dataName(interest->getName());
 		// dataName.append(m_postfix);
 		// dataName.appendVersion();
 
-		auto data = std::make_shared<ndn::Data>();
+		auto data = std::make_shared<Data>();
 		data->setName(dataName);
 		data->setFreshnessPeriod(::ndn::time::milliseconds(m_freshness.GetMilliSeconds()));
 
@@ -89,4 +90,4 @@ namespace ns3 {
 		m_face->onReceiveData(*data);
 	}
 }
-
+}

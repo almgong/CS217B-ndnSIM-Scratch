@@ -9,7 +9,8 @@
 **/
 
 namespace ns3 {
-	class ProducerPRT : public ndn::Producer {
+namespace ndn {
+	class ProducerPRT : public Producer {
 
 		//overrides from a ns3::ndn::Producer
 		public:
@@ -17,7 +18,7 @@ namespace ns3 {
   			GetTypeId(void);
 
 			virtual void 
-			OnInterest(std::shared_ptr<const ndn::Interest> interest);
+			OnInterest(std::shared_ptr<const Interest> interest);
 
 		private:
 			Name m_prefix;
@@ -30,5 +31,5 @@ namespace ns3 {
 
 	};
 }
-
+}
 #endif
