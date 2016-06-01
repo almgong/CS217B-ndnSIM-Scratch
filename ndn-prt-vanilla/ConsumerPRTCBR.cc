@@ -81,7 +81,7 @@ namespace ns3 {
     NS_LOG_INFO("< DATA for " << data->getName());
 
     std::cout << "Signature " << data->getSignature() << std::endl;
-    if(data->getSignature() < 1) {
+    if(data->getSignature() == 1) {
       std::cout << "Skipped" << std::endl;
       return;
     }
