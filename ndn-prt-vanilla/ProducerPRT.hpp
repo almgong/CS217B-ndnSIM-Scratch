@@ -12,7 +12,7 @@ namespace ns3 {
 	class ProducerPRT : public ndn::Producer {
 
 		//overrides from a regular producer
-
+		void OnInterest(Ptr<const Interest> interest);
 
 	};
 }

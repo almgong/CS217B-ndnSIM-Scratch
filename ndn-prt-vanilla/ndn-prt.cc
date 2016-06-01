@@ -7,7 +7,6 @@
 #include "ns3/point-to-point-layout-module.h"
 
 #include <iostream>
-#include "ConsumerPRT.hpp"
 
 namespace ns3 {
 
@@ -87,7 +86,7 @@ namespace ns3 {
 		producerHelper.SetAttribute("PayloadSize", StringValue("1024"));
 		producerHelper.Install(producer);
 
-		ndn::AppHelper badProducerHelper("ns3::ndn::Producer");
+		ndn::AppHelper badProducerHelper("ns3::ndn::ProducerPRT");
 		badProducerHelper.SetPrefix(prefix);
 		badProducerHelper.SetAttribute("PayloadSize", StringValue("1024"));
 		badProducerHelper.Install(badProducer);
@@ -97,7 +96,7 @@ namespace ns3 {
 
 		// Add /prefix origins to ndn::GlobalRouter
 		ndnGlobalRoutingHelper.AddOrigins(prefix, producer);
-		ndnGlobalRoutingHelper.AddOrigins(prefix, badProducerHelper);
+		ndnGlobalRoutingHelper.AddOrigins(prefix, badProducer);
 
 		// Calculate and install FIBs
 		ndn::GlobalRoutingHelper::CalculateRoutes();
