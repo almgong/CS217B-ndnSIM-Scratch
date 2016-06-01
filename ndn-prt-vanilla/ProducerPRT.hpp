@@ -20,6 +20,9 @@ namespace ndn {
 			virtual void 
 			OnInterest(std::shared_ptr<const Interest> interest);
 
+			//cstr
+			ProducerPRT();
+
 		private:
 			Name m_prefix;
 			Name m_postfix;
@@ -29,6 +32,9 @@ namespace ndn {
 			uint32_t m_signature;
 			Name m_keyLocator;
 
+		protected:
+			virtual void StartApplication();
+			virtual void StopApplication();
 	};
 }
 }

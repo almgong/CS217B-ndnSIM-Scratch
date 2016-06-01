@@ -18,6 +18,11 @@ namespace ndn {
 
 	NS_OBJECT_ENSURE_REGISTERED(ProducerPRT);
 
+	ProducerPRT::ProducerPRT ()
+	{
+	  NS_LOG_FUNCTION_NOARGS ();
+	}
+
 	TypeId
 	ProducerPRT::GetTypeId (void)
 	{
@@ -52,6 +57,42 @@ namespace ndn {
 			;
 		return tid;
 	}
+
+	// inherited from Application base class.
+	void
+	ProducerPRT::StartApplication ()
+	{
+		NS_LOG_FUNCTION_NOARGS ();
+		//NS_ASSERT (GetNode ()->GetObject<L3Protocol> ()->GetForwarder ()->getFib ().m_nItems != 0);
+
+		App::StartApplication ();
+
+		NS_LOG_DEBUG ("NodeID: " << GetNode ()->GetId ());
+
+		// ::ndn::shared_ptr< ::nfd::fib::Entry> entry =
+		//    GetNode ()->GetObject<L3Protocol> ()->GetForwarder ()->getFib ().insert (m_prefix).first;
+		// entry->addNextHop (m_face->shared_from_this (), 0);
+
+		ControlParameters parameters;
+		parameters.setName(m_prefix);
+		parameters.setFaceId(m_face->getId ());
+		parameters.setCost (0);
+
+		FibHelper fibHelper;
+		Ptr<Node> node = GetNode();
+		fibHelper.AddNextHop(parameters, node);
+	}
+
+	void
+	ProducerPRT::StopApplication ()
+	{
+		NS_LOG_FUNCTION_NOARGS ();
+		//NS_ASSERT (GetNode ()->GetObject<Fib> () != 0);
+
+		App::StopApplication ();
+	}
+
+
 
 	void
 	ProducerPRT::OnInterest(std::shared_ptr<const Interest> interest) {
