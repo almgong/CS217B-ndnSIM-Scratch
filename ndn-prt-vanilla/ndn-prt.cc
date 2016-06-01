@@ -8,6 +8,9 @@
 
 #include <iostream>
 
+#include "ConsumerPRTCBR.hpp"
+#include "ProducerPRT.hpp"
+
 namespace ns3 {
 
 	/**

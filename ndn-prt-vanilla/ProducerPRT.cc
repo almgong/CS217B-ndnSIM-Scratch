@@ -16,7 +16,7 @@ NS_LOG_COMPONENT_DEFINE("ndn.ProducerPRT");
 namespace ns3 {
 namespace ndn {
 
-	NS_OBJECT_ENSURE_REGISTERED (ProducerPRT);
+	NS_OBJECT_ENSURE_REGISTERED(ProducerPRT);
 
 	TypeId
 	ProducerPRT::GetTypeId (void)
@@ -58,7 +58,8 @@ namespace ndn {
 		App::OnInterest(interest); // tracing inside
 
 		NS_LOG_FUNCTION(this << interest);
-
+		NS_LOG_DEBUG("got an interest in baddie");
+		std::cout << "interest received by baddie" << std::endl;
 		if (!m_active)
 		return;
 
@@ -91,6 +92,7 @@ namespace ndn {
 
 		m_transmittedDatas(data, this, m_face);
 		m_face->onReceiveData(*data);
+		std::cout << "interest replied to by baddie" << std::endl;
 	}
 }
 }

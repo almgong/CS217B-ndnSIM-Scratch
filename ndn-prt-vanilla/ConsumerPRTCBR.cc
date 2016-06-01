@@ -82,7 +82,7 @@ namespace ndn {
 
 
     //signature verification, if it isn't 1 then we have a problem
-    std::cout << "Signature " << data->getSignature() << std::endl;
+    //std::cout << "Signature " << data->getSignature() << std::endl;
     if(data->getSignature() != 1) {
       std::cout << "Skipped" << std::endl;
 
