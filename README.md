@@ -1,6 +1,6 @@
 # CS217B-ndnSIM-Scratch
 
-This directory should be in: [...]/ndnSIM/ns-3/scratch
+The CONTENTS of this repo should be in: [...]/ndnSIM/ns-3/scratch
 
 ./waf should automatically build the simulation. If you include the optimize flag then I think debugging wont show, so don't do that for testing purposes.
 
@@ -24,3 +24,9 @@ UPDATE: a great resource I am using is: ndnsim.net/2.1/applications.html
 - it has good examples on how to modify the behavior or consumers and producers,
 it seems like we wont be able to implement a report easily, but we should be able
 to simulate the effects of the report (via interests with clever suffixes)
+
+--------------------------------------------------------------------------------
+
+Example:
+
+While in the scratch/ directory, you can do NS_LOG=ndn.Consumer:ndn.Producer ../waf --run ndn-prt-vanilla to run the simulation with all NS_LOG_DEBUG prints printed to your terminal. You can also use --vis to see the simulation in a new tab (will need XQuartz if on OSX).
