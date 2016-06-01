@@ -16,7 +16,7 @@ namespace ndn {
 	NS_LOG_COMPONENT_DEFINE("ProducerPRT");
 
 	TypeId
-	Producer::GetTypeId (void)
+	ProducerPRT::GetTypeId (void)
 	{
 		static TypeId tid = TypeId ("ns3::ndn::ProducerPRT")
 			.SetGroupName ("Ndn")
@@ -24,27 +24,27 @@ namespace ndn {
 			.AddConstructor<Producer> ()
 			.AddAttribute ("Prefix","Prefix, for which producer has the data",
 			                StringValue ("/"),
-			                MakeNameAccessor (&Producer::m_prefix),
+			                MakeNameAccessor (&ProducerPRT::m_prefix),
 			                MakeNameChecker ())
 			.AddAttribute ("Postfix", "Postfix that is added to the output data (e.g., for adding producer-uniqueness)",
 			                StringValue ("/"),
-			                MakeNameAccessor (&Producer::m_postfix),
+			                MakeNameAccessor (&ProducerPRT::m_postfix),
 			                MakeNameChecker ())
 			.AddAttribute ("PayloadSize", "Virtual payload size for Content packets",
 			               UintegerValue (1024),
-			               MakeUintegerAccessor (&Producer::m_virtualPayloadSize),
+			               MakeUintegerAccessor (&ProducerPRT::m_virtualPayloadSize),
 			               MakeUintegerChecker<uint32_t> ())
 			.AddAttribute ("Freshness", "Freshness of data packets, if 0, then unlimited freshness",
 			                TimeValue (Seconds (0)),
-			                MakeTimeAccessor (&Producer::m_freshness),
+			                MakeTimeAccessor (&ProducerPRT::m_freshness),
 			                MakeTimeChecker ())
 			.AddAttribute ("Signature", "Fake signature, 0 valid signature (default), other values application-specific",
 			               UintegerValue (0),
-			               MakeUintegerAccessor (&Producer::m_signature),
+			               MakeUintegerAccessor (&ProducerPRT::m_signature),
 			               MakeUintegerChecker<uint32_t> ())
 			.AddAttribute ("KeyLocator", "Name to be used for key locator.  If root, then key locator is not used",
 			                NameValue (),
-			                MakeNameAccessor (&Producer::m_keyLocator),
+			                MakeNameAccessor (&ProducerPRT::m_keyLocator),
 			                MakeNameChecker ())
 			;
 		return tid;
