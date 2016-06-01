@@ -83,11 +83,11 @@ namespace ns3 {
 
     //signature verification, if it isn't 1 then we have a problem
     std::cout << "Signature " << data->getSignature() << std::endl;
-    if(data->getSignature() != 2) {
+    if(data->getSignature() != 1) {
       std::cout << "Skipped" << std::endl;
 
       //TODO now just send a report and we are good to go
-      SendInterest(data->getSignature());
+      SendInterest((uint32_t)data->getSignature());       //temporary
       
       return;
     }

@@ -69,6 +69,7 @@ namespace ns3 {
 
 		// Getting containers for the consumer/producer
 		Ptr<Node> producer = grid.GetNode(3, 3);
+		Ptr<Node> badProducer = grid.GetNode(2,2);
 		NodeContainer consumerNodes;
 		consumerNodes.Add(grid.GetNode(0, 0));
 		consumerNodes.Add(grid.GetNode(0,3));
@@ -86,15 +87,21 @@ namespace ns3 {
 		producerHelper.SetAttribute("PayloadSize", StringValue("1024"));
 		producerHelper.Install(producer);
 
-		producerHelper.SetPrefix("/report/15");
-		producerHelper.Install(producer);
+		ndn::AppHelper badProducerHelper("ns3::ndn::Producer");
+		badProducerHelper.SetPrefix(prefix);
+		badProducerHelper.SetAttribute("PayloadSize", StringValue("1024"));
+		badProducerHelper.Install(badProducer);
+
+		//producerHelper.SetPrefix("/prefix/report/1");
+		//producerHelper.Install(producer);
 
 		// Add /prefix origins to ndn::GlobalRouter
 		ndnGlobalRoutingHelper.AddOrigins(prefix, producer);
+		ndnGlobalRoutingHelper.AddOrigins(prefix, badProducerHelper);
 
 		// Calculate and install FIBs
 		ndn::GlobalRoutingHelper::CalculateRoutes();
-		std::cout << "Left router of producer " << grid.GetNode(3,2) << std::endl;
+		
 		Simulator::Stop(Seconds(10.0));
 
 		Simulator::Run();
