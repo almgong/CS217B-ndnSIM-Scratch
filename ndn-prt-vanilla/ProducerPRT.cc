@@ -74,28 +74,16 @@ namespace ndn {
 	void
 	ProducerPRT::StartApplication ()
 	{
-		NS_LOG_FUNCTION_NOARGS ();
+		NS_LOG_FUNCTION_NOARGS();
+		App::StartApplication();
 
-		App::StartApplication ();
-
-		NS_LOG_DEBUG ("NodeID: " << GetNode ()->GetId ());
-
-		ControlParameters parameters;
-		parameters.setName(m_prefix);
-		parameters.setFaceId(m_face->getId ());
-		parameters.setCost (0);
-
-		FibHelper fibHelper;
-		Ptr<Node> node = GetNode();
-		fibHelper.AddNextHop(parameters, node);
+		FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0);
 	}
 
 	void
 	ProducerPRT::StopApplication ()
 	{
 		NS_LOG_FUNCTION_NOARGS ();
-		//NS_ASSERT (GetNode ()->GetObject<Fib> () != 0);
-
 		App::StopApplication ();
 	}
 
