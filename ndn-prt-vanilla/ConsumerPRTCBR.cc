@@ -83,11 +83,11 @@ namespace ns3 {
 
     //signature verification, if it isn't 1 then we have a problem
     std::cout << "Signature " << data->getSignature() << std::endl;
-    if(data->getSignature() != 1) {
+    if(data->getSignature() != 2) {
       std::cout << "Skipped" << std::endl;
 
       //TODO now just send a report and we are good to go
-
+      SendInterest(data->getSignature());
       
       return;
     }
@@ -178,14 +178,14 @@ namespace ns3 {
 
   //meant to send a single interest packet, can use as alternative to report
   void
-  ConsumerPRTCBR::SendInterest()
+  ConsumerPRTCBR::SendInterest(uint32_t suffix)
   {
     /////////////////////////////////////
     // Sending one Interest packet out //
     /////////////////////////////////////
 
     // Create and configure ndn::Interest
-    auto interest = std::make_shared<ndn::Interest>("/prefix/report");
+    auto interest = std::make_shared<ndn::Interest>("/prefix/report/" + suffix);
     Ptr<UniformRandomVariable> rand = CreateObject<UniformRandomVariable>();
     interest->setNonce(rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
     interest->setInterestLifetime(ndn::time::seconds(1));
