@@ -9,12 +9,12 @@
 
 #include "ns3/ndnSIM/model/ndn-app-face.hpp"
 #include "ns3/ndnSIM/NFD/daemon/table/fib.hpp"
-#include "ns3/ndnSIM/model/ndn-ns3.h"
-#include "ns3/ndnSIM/model/ndn-l3-protocol.h"
+#include "ns3/ndnSIM/model/ndn-ns3.hpp"
+#include "ns3/ndnSIM/model/ndn-l3-protocol.hpp"
 #include "ns3/ndnSIM/helper/ndn-fib-helper.hpp"
-#include "ns3/ndnSIM/utils/ndn-fw-hop-count-tag.h"
-#include "ns3/ndn-interest.h"
-#include "ns3/ndn-data.h"
+#include "ns3/ndnSIM/utils/ndn-fw-hop-count-tag.hpp"
+//#include "ns3/ndn-interest.h"
+//#include "ns3/ndn-data.h"
 
 #include <boost/ref.hpp>
 #include <boost/lambda/lambda.hpp>
