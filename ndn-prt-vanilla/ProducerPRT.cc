@@ -1,15 +1,27 @@
 #include "ProducerPRT.hpp"
 
-#include "ns3/ptr.h"
+#include "ns3/object.h"
 #include "ns3/log.h"
-#include "ns3/simulator.h"
-#include "ns3/packet.h"
-#include "ns3/callback.h"
 #include "ns3/string.h"
-#include "ns3/boolean.h"
 #include "ns3/uinteger.h"
-#include "ns3/integer.h"
-#include "ns3/double.h"
+#include "ns3/packet.h"
+#include "ns3/simulator.h"
+
+#include "ns3/ndnSIM/model/ndn-app-face.hpp"
+#include "ns3/ndnSIM/NFD/daemon/table/fib.hpp"
+#include "ns3/ndnSIM/model/ndn-ns3.h"
+#include "ns3/ndnSIM/model/ndn-l3-protocol.h"
+#include "ns3/ndnSIM/helper/ndn-fib-helper.hpp"
+#include "ns3/ndnSIM/utils/ndn-fw-hop-count-tag.h"
+#include "ns3/ndn-interest.h"
+#include "ns3/ndn-data.h"
+
+#include <boost/ref.hpp>
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+
+#include <memory>
+
 
 NS_LOG_COMPONENT_DEFINE("ndn.ProducerPRT");
 
@@ -63,15 +75,10 @@ namespace ndn {
 	ProducerPRT::StartApplication ()
 	{
 		NS_LOG_FUNCTION_NOARGS ();
-		//NS_ASSERT (GetNode ()->GetObject<L3Protocol> ()->GetForwarder ()->getFib ().m_nItems != 0);
 
 		App::StartApplication ();
 
 		NS_LOG_DEBUG ("NodeID: " << GetNode ()->GetId ());
-
-		// ::ndn::shared_ptr< ::nfd::fib::Entry> entry =
-		//    GetNode ()->GetObject<L3Protocol> ()->GetForwarder ()->getFib ().insert (m_prefix).first;
-		// entry->addNextHop (m_face->shared_from_this (), 0);
 
 		ControlParameters parameters;
 		parameters.setName(m_prefix);
