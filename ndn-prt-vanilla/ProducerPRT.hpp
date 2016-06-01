@@ -11,8 +11,22 @@
 namespace ns3 {
 	class ProducerPRT : public ndn::Producer {
 
-		//overrides from a regular producer
-		void OnInterest(std::shared_ptr<const ndn::Interest> interest);
+		//overrides from a ns3::ndn::Producer
+		public:
+			static TypeId
+  			GetTypeId(void);
+
+			virtual void 
+			OnInterest(std::shared_ptr<const ndn::Interest> interest);
+
+		private:
+			Name m_prefix;
+			Name m_postfix;
+			uint32_t m_virtualPayloadSize;
+			Time m_freshness;
+
+			uint32_t m_signature;
+			Name m_keyLocator;
 
 	};
 }
