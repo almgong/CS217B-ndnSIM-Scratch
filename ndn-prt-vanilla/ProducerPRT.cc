@@ -11,10 +11,12 @@
 #include "ns3/integer.h"
 #include "ns3/double.h"
 
-NS_LOG_COMPONENT_DEFINE("ProducerPRT");
+NS_LOG_COMPONENT_DEFINE("ndn.ProducerPRT");
 
 namespace ns3 {
 namespace ndn {
+
+	NS_OBJECT_ENSURE_REGISTERED (ProducerPRT);
 
 	TypeId
 	ProducerPRT::GetTypeId (void)

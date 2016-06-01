@@ -27,7 +27,7 @@
 
 #include "ns3/random-variable-stream.h"
 
-NS_LOG_COMPONENT_DEFINE("ConsumerPRTCBR");
+NS_LOG_COMPONENT_DEFINE("ndn.ConsumerPRTCBR");
 
 namespace ns3 {
 namespace ndn {
