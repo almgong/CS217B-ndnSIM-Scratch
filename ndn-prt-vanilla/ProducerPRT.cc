@@ -12,11 +12,11 @@
 #include "ns3/double.h"
 
 namespace ns3 {
-	NS_LOG_COMPONENT_DEFINE("ConsumerPRTCBR");
+	NS_LOG_COMPONENT_DEFINE("ProducerPRT");
 
 
 	void
-	ProducerPRT::OnInterest(shared_ptr<const ndn::Interest> interest) {
+	ProducerPRT::OnInterest(std::shared_ptr<const ndn::Interest> interest) {
 		App::OnInterest(interest); // tracing inside
 
 		NS_LOG_FUNCTION(this << interest);
@@ -24,15 +24,15 @@ namespace ns3 {
 		if (!m_active)
 		return;
 
-		Name dataName(interest->getName());
+		ndn::Name dataName(interest->getName());
 		// dataName.append(m_postfix);
 		// dataName.appendVersion();
 
-		auto data = make_shared<ndn::Data>();
+		auto data = std::make_shared<ndn::Data>();
 		data->setName(dataName);
 		data->setFreshnessPeriod(::ndn::time::milliseconds(m_freshness.GetMilliSeconds()));
 
-		data->setContent(make_shared< ::ndn::Buffer>(m_virtualPayloadSize));
+		data->setContent(std::make_shared< ::ndn::Buffer>(m_virtualPayloadSize));
 
 		Signature signature;
 		SignatureInfo signatureInfo(static_cast< ::ndn::tlv::SignatureTypeValue>(255));
