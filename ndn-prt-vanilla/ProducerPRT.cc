@@ -16,7 +16,7 @@ namespace ns3 {
 
 
 	void
-	ProducerPRT::OnInterest(Ptr<const Interest> interest) {
+	ProducerPRT::OnInterest(shared_ptr<const ndn::Interest> interest) {
 		App::OnInterest(interest); // tracing inside
 
 		NS_LOG_FUNCTION(this << interest);
@@ -28,7 +28,7 @@ namespace ns3 {
 		// dataName.append(m_postfix);
 		// dataName.appendVersion();
 
-		auto data = make_shared<Data>();
+		auto data = make_shared<ndn::Data>();
 		data->setName(dataName);
 		data->setFreshnessPeriod(::ndn::time::milliseconds(m_freshness.GetMilliSeconds()));
 
