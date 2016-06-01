@@ -30,7 +30,7 @@
 NS_LOG_COMPONENT_DEFINE("ConsumerPRTCBR");
 
 namespace ns3 {
-
+namespace ndn {
 	NS_OBJECT_ENSURE_REGISTERED(ConsumerPRTCBR);
 
 	TypeId
@@ -65,7 +65,7 @@ namespace ns3 {
   //Process incoming packets 
   //override ndn-consumer            
   void
-  ConsumerPRTCBR::OnData(std::shared_ptr<const ndn::Data> data)
+  ConsumerPRTCBR::OnData(std::shared_ptr<const Data> data)
   {
     if (!m_active)
       return;
@@ -93,9 +93,9 @@ namespace ns3 {
     }
 
     int hopCount = 0;
-    auto ns3PacketTag = data->getTag<ndn::Ns3PacketTag>();
+    auto ns3PacketTag = data->getTag<Ns3PacketTag>();
     if (ns3PacketTag != nullptr) { // e.g., packet came from local node's cache
-      ndn::FwHopCountTag hopCountTag;
+      FwHopCountTag hopCountTag;
       if (ns3PacketTag->getPacket()->PeekPacketTag(hopCountTag)) {
         hopCount = hopCountTag.Get();
         NS_LOG_DEBUG("Hop count: " << hopCount);
@@ -152,16 +152,16 @@ namespace ns3 {
     }
 
     //
-    std::shared_ptr<ndn::Name> nameWithSequence = std::make_shared<ndn::Name>(m_interestName);
+    std::shared_ptr<Name> nameWithSequence = std::make_shared<Name>(m_interestName);
     nameWithSequence->appendSequenceNumber(seq);
     std::cout << *nameWithSequence << std::endl;
     //
 
     // shared_ptr<Interest> interest = make_shared<Interest> ();
-    std::shared_ptr<ndn::Interest> interest = std::make_shared<ndn::Interest>();
+    std::shared_ptr<Interest> interest = std::make_shared<Interest>();
     interest->setNonce(m_rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
     interest->setName(*nameWithSequence);
-    ndn::time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
+    time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
     interest->setInterestLifetime(interestLifeTime);
 
     // NS_LOG_INFO ("Requesting Interest: \n" << *interest);
@@ -185,10 +185,10 @@ namespace ns3 {
     /////////////////////////////////////
 
     // Create and configure ndn::Interest
-    auto interest = std::make_shared<ndn::Interest>("/prefix/report/" + suffix);
+    auto interest = std::make_shared<Interest>("/prefix/report/" + suffix);
     Ptr<UniformRandomVariable> rand = CreateObject<UniformRandomVariable>();
     interest->setNonce(rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
-    interest->setInterestLifetime(ndn::time::seconds(1));
+    interest->setInterestLifetime(time::seconds(1));
 
     NS_LOG_DEBUG("Sending Interest packet for " << *interest);
 
@@ -199,5 +199,5 @@ namespace ns3 {
   }
 
 
-
+}
 }
