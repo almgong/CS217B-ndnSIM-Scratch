@@ -86,6 +86,9 @@ namespace ns3 {
 		producerHelper.SetAttribute("PayloadSize", StringValue("1024"));
 		producerHelper.Install(producer);
 
+		producerHelper.SetPrefix("/report/15");
+		producerHelper.Install(producer);
+
 		// Add /prefix origins to ndn::GlobalRouter
 		ndnGlobalRoutingHelper.AddOrigins(prefix, producer);
 
