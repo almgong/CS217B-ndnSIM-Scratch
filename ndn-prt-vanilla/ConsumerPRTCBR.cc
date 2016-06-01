@@ -80,9 +80,15 @@ namespace ns3 {
     uint32_t seq = data->getName().at(-1).toSequenceNumber();
     NS_LOG_INFO("< DATA for " << data->getName());
 
+
+    //signature verification, if it isn't 1 then we have a problem
     std::cout << "Signature " << data->getSignature() << std::endl;
-    if(data->getSignature() == 1) {
+    if(data->getSignature() != 1) {
       std::cout << "Skipped" << std::endl;
+
+      //TODO now just send a report and we are good to go
+
+      
       return;
     }
 
