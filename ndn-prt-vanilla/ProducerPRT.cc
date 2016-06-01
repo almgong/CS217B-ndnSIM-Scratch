@@ -11,9 +11,10 @@
 #include "ns3/integer.h"
 #include "ns3/double.h"
 
+NS_LOG_COMPONENT_DEFINE("ProducerPRT");
+
 namespace ns3 {
 namespace ndn {
-	NS_LOG_COMPONENT_DEFINE("ProducerPRT");
 
 	TypeId
 	ProducerPRT::GetTypeId (void)
