@@ -110,9 +110,9 @@ namespace ndn {
 		}
 
 		signature.setInfo(signatureInfo);
-		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, m_signature));
-		//std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
-		data->setSignature(2);
+		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, 500));
+		std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
+		data->setSignature(signature);
 
 		NS_LOG_INFO("node(" << GetNode()->GetId() << ") responding with Data: " << data->getName());
 
