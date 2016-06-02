@@ -1,6 +1,4 @@
 #include "ProducerPRT.hpp"
-
-#include "ns3/object.h"
 #include "ns3/log.h"
 #include "ns3/string.h"
 #include "ns3/uinteger.h"
@@ -8,17 +6,9 @@
 #include "ns3/simulator.h"
 
 #include "ns3/ndnSIM/model/ndn-app-face.hpp"
-#include "ns3/ndnSIM/NFD/daemon/table/fib.hpp"
 #include "ns3/ndnSIM/model/ndn-ns3.hpp"
 #include "ns3/ndnSIM/model/ndn-l3-protocol.hpp"
 #include "ns3/ndnSIM/helper/ndn-fib-helper.hpp"
-#include "ns3/ndnSIM/utils/ndn-fw-hop-count-tag.hpp"
-//#include "ns3/ndn-interest.h"
-//#include "ns3/ndn-data.h"
-
-#include <boost/ref.hpp>
-#include <boost/lambda/lambda.hpp>
-#include <boost/lambda/bind.hpp>
 
 #include <memory>
 
@@ -33,6 +23,7 @@ namespace ndn {
 	ProducerPRT::ProducerPRT ()
 	{
 	  NS_LOG_FUNCTION_NOARGS ();
+	  std::cout << "Constructor of bad producer" << std::endl;
 	}
 
 	TypeId
