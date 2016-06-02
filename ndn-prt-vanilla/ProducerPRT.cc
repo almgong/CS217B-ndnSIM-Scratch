@@ -33,7 +33,7 @@ namespace ndn {
 		static TypeId tid = TypeId ("ns3::ndn::ProducerPRT")
 			.SetGroupName ("Ndn")
 			.SetParent<App> ()
-			.AddConstructor<Producer> ()
+			.AddConstructor<ProducerPRT> ()
 			.AddAttribute ("Prefix","Prefix, for which producer has the data",
 			                StringValue ("/"),
 			                MakeNameAccessor (&ProducerPRT::m_prefix),
