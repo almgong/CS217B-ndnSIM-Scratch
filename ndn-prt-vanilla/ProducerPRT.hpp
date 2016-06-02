@@ -1,5 +1,5 @@
-#ifndef CONSUMER_PRT_CBR_H_
-#define CONSUMER_PRT__CBR_H_
+#ifndef PRODUCER_PRT_H_
+#define PRODUCER_PRT_H_
 
 #include "ns3/ndnSIM/apps/ndn-producer.hpp"
 /**

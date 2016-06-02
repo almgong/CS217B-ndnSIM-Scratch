@@ -71,7 +71,7 @@ namespace ns3 {
 
 		// Getting containers for the consumer/producer
 		Ptr<Node> producer = grid.GetNode(3, 3);
-		Ptr<Node> badProducer = grid.GetNode(2,2);
+		Ptr<Node> badProducer = grid.GetNode(1,0);
 		NodeContainer consumerNodes;
 		consumerNodes.Add(grid.GetNode(0, 0));
 		consumerNodes.Add(grid.GetNode(0,3));
