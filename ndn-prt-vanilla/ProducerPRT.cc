@@ -51,7 +51,7 @@ namespace ndn {
 			                MakeTimeAccessor (&ProducerPRT::m_freshness),
 			                MakeTimeChecker ())
 			.AddAttribute ("Signature", "Fake signature, 0 valid signature (default), other values application-specific",
-			               UintegerValue (0),
+			               UintegerValue (1),
 			               MakeUintegerAccessor (&ProducerPRT::m_signature),
 			               MakeUintegerChecker<uint32_t> ())
 			.AddAttribute ("KeyLocator", "Name to be used for key locator.  If root, then key locator is not used",
@@ -87,8 +87,8 @@ namespace ndn {
 		App::OnInterest(interest); // tracing inside
 
 		NS_LOG_FUNCTION(this << interest);
-		NS_LOG_DEBUG("got an interest in baddie");
-		std::cout << "interest received by baddie" << std::endl;
+		//NS_LOG_DEBUG("got an interest in baddie");
+		//std::cout << "interest received by baddie" << std::endl;
 		if (!m_active)
 		return;
 
@@ -121,7 +121,7 @@ namespace ndn {
 
 		m_transmittedDatas(data, this, m_face);
 		m_face->onReceiveData(*data);
-		std::cout << "interest replied to by baddie" << std::endl;
+		//std::cout << "interest replied to by baddie" << std::endl;
 	}
 }
 }
