@@ -1,7 +1,14 @@
 #ifndef PRODUCER_PRT_H_
 #define PRODUCER_PRT_H_
 
-#include "ns3/ndnSIM/apps/ndn-producer.hpp"
+#include "ns3/ndnSIM/model/ndn-common.hpp"
+
+#include "ns3/ndnSIM/apps/ndn-app.hpp"
+#include "ns3/ndnSIM/model/ndn-common.hpp"
+
+#include "ns3/nstime.h"
+#include "ns3/ptr.h"
+
 /**
  * Represents a NDN producer, and sepcifically, one that gives out data
  * with signatures that do not verify (in our case, we substitute invalid
@@ -10,7 +17,7 @@
 
 namespace ns3 {
 namespace ndn {
-	class ProducerPRT : public Producer {
+	class ProducerPRT : public App {
 
 		//overrides from a ns3::ndn::Producer
 		public:
