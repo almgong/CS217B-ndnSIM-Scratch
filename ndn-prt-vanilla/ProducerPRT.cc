@@ -68,7 +68,7 @@ namespace ndn {
 	{
 		NS_LOG_FUNCTION_NOARGS();
 		App::StartApplication();
-		std::cout << "Started bad producer" << std::endl;
+
 		FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0);
 	}
 
@@ -76,7 +76,7 @@ namespace ndn {
 	ProducerPRT::StopApplication ()
 	{
 		NS_LOG_FUNCTION_NOARGS ();
-		App::StopApplication ();
+		
 		std::cout << "Stopped bad producer" << std::endl;
 	}
 
@@ -111,8 +111,8 @@ namespace ndn {
 
 		signature.setInfo(signatureInfo);
 		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, m_signature));
-		std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
-		data->setSignature(signature);
+		//std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
+		data->setSignature(2);
 
 		NS_LOG_INFO("node(" << GetNode()->GetId() << ") responding with Data: " << data->getName());
 
