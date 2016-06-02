@@ -99,7 +99,7 @@ namespace ns3 {
 
 		// Add /prefix origins to ndn::GlobalRouter
 		ndnGlobalRoutingHelper.AddOrigins(prefix, producer);
-		//ndnGlobalRoutingHelper.AddOrigins(prefix, badProducer);
+		ndnGlobalRoutingHelper.AddOrigins(prefix, badProducer);
 
 		// Calculate and install FIBs
 		ndn::GlobalRoutingHelper::CalculateRoutes();

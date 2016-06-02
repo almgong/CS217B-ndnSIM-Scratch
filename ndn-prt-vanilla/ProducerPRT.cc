@@ -38,6 +38,7 @@ namespace ndn {
 	TypeId
 	ProducerPRT::GetTypeId (void)
 	{
+		std::cout << "Got type id of bad producer" << std::endl;
 		static TypeId tid = TypeId ("ns3::ndn::ProducerPRT")
 			.SetGroupName ("Ndn")
 			.SetParent<App> ()
@@ -76,7 +77,7 @@ namespace ndn {
 	{
 		NS_LOG_FUNCTION_NOARGS();
 		App::StartApplication();
-
+		std::cout << "Started bad producer" << std::endl;
 		FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0);
 	}
 
@@ -85,6 +86,7 @@ namespace ndn {
 	{
 		NS_LOG_FUNCTION_NOARGS ();
 		App::StopApplication ();
+		std::cout << "Stopped bad producer" << std::endl;
 	}
 
 
