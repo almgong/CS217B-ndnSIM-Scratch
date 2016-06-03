@@ -109,8 +109,12 @@ namespace ndn {
 		signatureInfo.setKeyLocator(m_keyLocator);
 		}
 
+		//make a fake keyLocator with a bad name
+		Name klName("/ndn/badProducer/KEY");
+		//KeyLocator keyLocator(&klName);
+		signature.setKeyLocator(&klName);
 		signature.setInfo(signatureInfo);
-		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, 500));
+		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, m_signature));
 		std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
 		data->setSignature(signature);
 
