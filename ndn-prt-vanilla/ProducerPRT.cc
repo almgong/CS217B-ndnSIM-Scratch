@@ -55,7 +55,7 @@ namespace ndn {
 			               MakeUintegerAccessor (&ProducerPRT::m_signature),
 			               MakeUintegerChecker<uint32_t> ())
 			.AddAttribute ("KeyLocator", "Name to be used for key locator.  If root, then key locator is not used",
-			                NameValue (),
+			                NameValue(Name("/ndn/bad/KEY")),
 			                MakeNameAccessor (&ProducerPRT::m_keyLocator),
 			                MakeNameChecker ())
 			;
@@ -112,7 +112,7 @@ namespace ndn {
 		//make a fake keyLocator with a bad name
 		Name klName("/ndn/badProducer/KEY");
 		//KeyLocator keyLocator(&klName);
-		signature.setKeyLocator(&klName);
+		//signature.setKeyLocator(&klName);
 		signature.setInfo(signatureInfo);
 		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, m_signature));
 		std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
