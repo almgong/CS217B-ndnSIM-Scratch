@@ -83,8 +83,11 @@ namespace ndn {
 
     //signature verification, if it isn't 1 then we have a problem
     //std::cout << "Signature " << data->getSignature() << std::endl;
-    if(data->getSignature() != 1) {
-      std::cout << "Skipped" << std::endl;
+
+//data->getSignature().getValue().parse();
+std::cout << "value: " << data->getSignature().hasKeyLocator() << std::endl;
+    if(*(data->getSignature().getValue().value()) != 1) {
+      std::cout << "Skipped " << *(data->getSignature().getValue().value())  << " k"<< std::endl;
 
       //TODO now just send a report and we are good to go
       SendInterest((uint32_t)data->getSignature());       //temporary

@@ -51,7 +51,7 @@ namespace ndn {
 			                MakeTimeAccessor (&ProducerPRT::m_freshness),
 			                MakeTimeChecker ())
 			.AddAttribute ("Signature", "Fake signature, 0 valid signature (default), other values application-specific",
-			               UintegerValue (1),
+			               UintegerValue (999),
 			               MakeUintegerAccessor (&ProducerPRT::m_signature),
 			               MakeUintegerChecker<uint32_t> ())
 			.AddAttribute ("KeyLocator", "Name to be used for key locator.  If root, then key locator is not used",
