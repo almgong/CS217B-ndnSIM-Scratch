@@ -25,6 +25,7 @@ namespace ndn {
 				void OnData(std::shared_ptr<const Data> data);
 				void SendPacket();
 				void SendInterest(uint32_t suffix);
+				void HandleInvalidPacket();
 		};
 
 }

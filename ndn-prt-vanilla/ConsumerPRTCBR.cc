@@ -92,7 +92,7 @@ namespace ndn {
 
       //TODO now just send a report and we are good to go
       SendInterest((uint32_t)data->getSignature());       //temporary
-      
+      HandleInvalidPacket();
       return;
     }
 
@@ -200,6 +200,12 @@ namespace ndn {
     m_transmittedInterests(interest, this, m_face);
 
     m_face->onReceiveInterest(*interest);
+  }
+
+  //implement or override in subclass to handle case where packet is invalid
+  void
+  ConsumerPRTCBR::HandleInvalidPacket() {
+    std::cout << "Invalid packet handled" << std::endl;
   }
 
 
