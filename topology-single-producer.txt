@@ -1,0 +1,125 @@
+#####
+###
+### Please put this file at src/ndnSIM/exmaples/topologies/
+###
+#####
+
+
+
+# router section defines topology nodes and their relative positions (e.g., to use in visualizer)
+router
+
+# each line in this section represents one router and should have the following data
+# node   comment    yPos    xPos
+group-1-node-3	NA          1       1
+group-1-node-4 	NA          1       2
+group-1-node-2	NA          2       0
+group-1-node-1  NA          3       0
+group-1-node-5  NA          1       3
+
+edge-router-group-1 NA 2 2
+
+#producer + producer's edge router + other consumer's edge router, first node-3 is producer
+edge-router-group-2		NA          8       4					
+edge-router-group-3 	NA          6       6
+
+
+producer				NA          6       8
+
+
+edge-router-group-4  	NA          4       10
+edge-router-group-5  	NA          2       12
+
+edge-router-core NA 2 6
+
+
+
+### second group of consumers
+group-2-node-1	NA	10 	2
+group-2-node-2	NA	10 	5
+group-2-node-3	NA	10 	4
+group-2-node-4	NA	7 	3
+group-2-node-5	NA	7 	2
+
+
+### third group of consumers
+group-3-node-1	NA	6 	5
+group-3-node-2	NA	7 	5
+group-3-node-3	NA	7 	6
+group-3-node-4	NA	6 	7
+group-3-node-5	NA	7	7
+
+
+### fourth group of consumers
+group-4-node-1	NA	4 	9
+group-4-node-2	NA	5 	9
+group-4-node-3	NA	5 	10
+group-4-node-4	NA	5 	11
+group-4-node-5	NA	4	11
+
+
+### fifth group of consumers
+group-5-node-1	NA	3 	11
+group-5-node-2	NA	3	12
+group-5-node-3	NA	2 	13
+group-5-node-4	NA	1 	11
+group-5-node-5	NA	1	12
+
+
+# link section defines point-to-point links between nodes and characteristics of these links
+link
+
+# Each line should be in the following format (only first two are required, the rest can be omitted)
+# srcNode   dstNode     bandwidth   metric  delay   queue
+# bandwidth: link bandwidth
+# metric: routing metric
+# delay:  link delay
+# queue:  MaxPackets for transmission queue on the link (both directions)
+group-1-node-1 edge-router-group-1 1Mbps       1       10ms    10
+group-1-node-2 edge-router-group-1 1Mbps       1       10ms    10
+group-1-node-3 edge-router-group-1 1Mbps       1       10ms    10
+group-1-node-4 edge-router-group-1 1Mbps       1       10ms    10
+group-1-node-5 edge-router-group-1 1Mbps       1       10ms    10
+
+edge-router-group-1 edge-router-core 	1Mbps       1       10ms    10
+
+
+### Connections to "CORE" edge router 
+edge-router-group-2 edge-router-core 	1Mbps       1       10ms    10
+edge-router-group-3 edge-router-core 	1Mbps       1       10ms    10
+producer edge-router-core 				1Mbps       1       10ms    10
+edge-router-group-4 edge-router-core 	1Mbps       1       10ms    10
+edge-router-group-5 edge-router-core 	1Mbps       1       10ms    10
+
+
+### Connections of group 2
+group-2-node-1	edge-router-group-2 	1Mbps       1       10ms    10
+group-2-node-2	edge-router-group-2 	1Mbps       1       10ms    10
+group-2-node-3	edge-router-group-2 	1Mbps       1       10ms    10
+group-2-node-4	edge-router-group-2 	1Mbps       1       10ms    10
+group-2-node-5	edge-router-group-2 	1Mbps       1       10ms    10
+
+
+### Connections of group 3
+group-3-node-1	edge-router-group-3 	1Mbps       1       10ms    10
+group-3-node-2	edge-router-group-3 	1Mbps       1       10ms    10
+group-3-node-3	edge-router-group-3 	1Mbps       1       10ms    10
+group-3-node-4	edge-router-group-3 	1Mbps       1       10ms    10
+group-3-node-5	edge-router-group-3 	1Mbps       1       10ms    10
+
+
+### Connections of group 4
+group-4-node-1	edge-router-group-4 	1Mbps       1       10ms    10
+group-4-node-2	edge-router-group-4 	1Mbps       1       10ms    10
+group-4-node-3	edge-router-group-4 	1Mbps       1       10ms    10
+group-4-node-4	edge-router-group-4 	1Mbps       1       10ms    10
+group-4-node-5	edge-router-group-4 	1Mbps       1       10ms    10
+
+
+### Connections of group 5
+group-5-node-1	edge-router-group-5 	1Mbps       1       10ms    10
+group-5-node-2	edge-router-group-5 	1Mbps       1       10ms    10
+group-5-node-3	edge-router-group-5 	1Mbps       1       10ms    10
+group-5-node-4	edge-router-group-5 	1Mbps       1       10ms    10
+group-5-node-5	edge-router-group-5 	1Mbps       1       10ms    10
+

@@ -24,8 +24,8 @@ namespace ndn {
 				static TypeId GetTypeId();
 				void OnData(std::shared_ptr<const Data> data);
 				void SendPacket();
-				void SendInterest(uint32_t suffix);
-				void HandleInvalidPacket();
+				void SendInterest();
+				void HandleInvalidPacket();	//temp
 		};
 
 }

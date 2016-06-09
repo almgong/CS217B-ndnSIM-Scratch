@@ -23,13 +23,13 @@ namespace ndn {
 	ProducerPRT::ProducerPRT ()
 	{
 	  NS_LOG_FUNCTION_NOARGS ();
-	  std::cout << "Constructor of bad producer" << std::endl;
+	  //std::cout << "Constructor of bad producer" << std::endl;
 	}
 
 	TypeId
 	ProducerPRT::GetTypeId (void)
 	{
-		std::cout << "Got type id of bad producer" << std::endl;
+		
 		static TypeId tid = TypeId ("ns3::ndn::ProducerPRT")
 			.SetGroupName ("Ndn")
 			.SetParent<App> ()
@@ -110,12 +110,12 @@ namespace ndn {
 		}
 
 		//make a fake keyLocator with a bad name
-		Name klName("/ndn/badProducer/KEY");
+		//Name klName("/ndn/badProducer/KEY");
 		//KeyLocator keyLocator(&klName);
 		//signature.setKeyLocator(&klName);
 		signature.setInfo(signatureInfo);
 		signature.setValue(::ndn::nonNegativeIntegerBlock(::ndn::tlv::SignatureValue, m_signature));
-		std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
+		//std::cout << "m_signature: " << m_signature << " actual signature: " << signature << std::endl;
 		data->setSignature(signature);
 
 		NS_LOG_INFO("node(" << GetNode()->GetId() << ") responding with Data: " << data->getName());

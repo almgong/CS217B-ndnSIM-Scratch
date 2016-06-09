@@ -12,18 +12,22 @@
 #include "ProducerPRT.hpp"
 
 namespace ns3 {
-
+	using ns3::ndn::StackHelper;
+	using ns3::ndn::AppHelper;
+	using ns3::ndn::GlobalRoutingHelper;
+	using ns3::ndn::StrategyChoiceHelper;
+	using ns3::AnnotatedTopologyReader;
 	/**
 	* Driver program, for vanilla PRT logic
 	* Note we need to implement logic of consumer and producer types
 	* (e.g., regular consumers, "bad producers") before running this.
 	**/
 	int main(int argc, char**argv) {
-		/*std::cout << "hello\n";
+		
 		// Read optional command-line parameters (e.g., enable visualizer with ./waf --run=<> --visualize
 		CommandLine cmd;
 		cmd.Parse(argc, argv);
-
+		/*
 		// Creating nodes
 		Ptr<Node> node = CreateObject<Node>();
 
@@ -45,6 +49,7 @@ namespace ns3 {
 
 		//3x3 ndn grid
 		// Setting default parameters for PointToPoint links and channels
+		/*
 		Config::SetDefault("ns3::PointToPointNetDevice::DataRate", StringValue("1Mbps"));
 		Config::SetDefault("ns3::PointToPointChannel::Delay", StringValue("10ms"));
 		Config::SetDefault("ns3::DropTailQueue::MaxPackets", StringValue("10"));
@@ -63,7 +68,7 @@ namespace ns3 {
 		ndnHelper.InstallAll();
 
 		// Set BestRoute strategy
-		ndn::StrategyChoiceHelper::InstallAll("/", "/localhost/nfd/strategy/best-route");
+		ndn::StrategyChoiceHelper::InstallAll("/", "/localhost/nfd/strategy/client-control");
 
 		// Installing global routing interface on all nodes
 		ndn::GlobalRoutingHelper ndnGlobalRoutingHelper;
@@ -77,7 +82,7 @@ namespace ns3 {
 		consumerNodes.Add(grid.GetNode(0,3));
 
 		// Install NDN applications
-		std::string prefix = "/ndn/prefix";
+		std::string prefix = "/prefix";
 
 		ndn::AppHelper consumerHelper("ns3::ndn::ConsumerPRTCBR");
 		consumerHelper.SetPrefix(prefix);
@@ -94,16 +99,65 @@ namespace ns3 {
 		badProducerHelper.SetAttribute("PayloadSize", StringValue("1024"));
 		badProducerHelper.Install(badProducer);
 
-		//producerHelper.SetPrefix("/prefix/report/1");
-		//producerHelper.Install(producer);
-
 		// Add /prefix origins to ndn::GlobalRouter
 		ndnGlobalRoutingHelper.AddOrigins(prefix, producer);
 		ndnGlobalRoutingHelper.AddOrigins(prefix, badProducer);
 
 		// Calculate and install FIBs
 		ndn::GlobalRoutingHelper::CalculateRoutes();
-		
+		*/
+
+
+
+
+
+		/* Using custom topolgy */
+		AnnotatedTopologyReader topologyReader("", 25);
+		topologyReader.SetFileName("src/ndnSIM/examples/topologies/topology-single-producer.txt");
+		topologyReader.Read();
+
+		// Install NDN stack on all nodes
+		StackHelper ndnHelper;
+		ndnHelper.InstallAll();
+
+		ndn::StrategyChoiceHelper::InstallAll("/", "/localhost/nfd/strategy/client-control");
+
+		// Installing global routing interface on all nodes
+		GlobalRoutingHelper ndnGlobalRoutingHelper;
+		ndnGlobalRoutingHelper.InstallAll();
+
+		// Getting containers for the consumer/producer
+		Ptr<Node> producer1 = Names::Find<Node>("producer");
+		NodeContainer consumerNodes;
+		consumerNodes.Add(Names::Find<Node>("group-1-node-1"));
+		consumerNodes.Add(Names::Find<Node>("group-1-node-2"));
+
+		// Install NDN applications
+		std::string prefix = "/prefix";
+		AppHelper consumerHelper("ns3::ndn::ConsumerPRTCBR");
+		consumerHelper.SetPrefix(prefix);
+		consumerHelper.SetAttribute("Frequency", StringValue("10")); // 100 interests a second
+		consumerHelper.Install(consumerNodes);
+
+		AppHelper producerHelper("ns3::ndn::ProducerPRT");
+		producerHelper.SetPrefix(prefix);
+		producerHelper.SetAttribute("PayloadSize", StringValue("1024"));
+		producerHelper.Install(producer1);
+		//producerHelper.Install(producer2);
+
+		// ndn::AppHelper badProducerHelper("ns3::ndn::ProducerPRT");
+		// badProducerHelper.SetPrefix(prefix);
+		// badProducerHelper.SetAttribute("PayloadSize", StringValue("1024"));
+		// badProducerHelper.Install(badProducer);
+
+		// Add /prefix origins to ndn::GlobalRouter
+		ndnGlobalRoutingHelper.AddOrigins(prefix, producer1);
+		//ndnGlobalRoutingHelper.AddOrigins(prefix, producer2);
+
+		// Calculate and install FIBs
+		GlobalRoutingHelper::CalculateRoutes();
+
+
 		Simulator::Stop(Seconds(10.0));
 
 		Simulator::Run();

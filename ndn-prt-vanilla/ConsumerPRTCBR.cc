@@ -88,10 +88,10 @@ namespace ndn {
     //std::cout << "value: " << data->getSignature().hasKeyLocator() << std::endl;
     
     if(data->getSignature().hasKeyLocator()) {
-      std::cout << "Skipped " << std::endl;
+      //std::cout << "Skipped " << std::endl;
 
       //TODO now just send a report and we are good to go
-      SendInterest((uint32_t)data->getSignature());       //temporary
+      SendInterest();       //temporary
       HandleInvalidPacket();
       return;
     }
@@ -182,14 +182,14 @@ namespace ndn {
 
   //meant to send a single interest packet, can use as alternative to report
   void
-  ConsumerPRTCBR::SendInterest(uint32_t suffix)
+  ConsumerPRTCBR::SendInterest()
   {
     /////////////////////////////////////
     // Sending one Interest packet out //
     /////////////////////////////////////
 
     // Create and configure ndn::Interest
-    auto interest = std::make_shared<Interest>("/prefix/report/" + suffix);
+    auto interest = std::make_shared<Interest>("/report/");
     Ptr<UniformRandomVariable> rand = CreateObject<UniformRandomVariable>();
     interest->setNonce(rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
     interest->setInterestLifetime(time::seconds(1));
