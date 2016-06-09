@@ -1,7 +1,7 @@
-#ifndef CONSUMER_PRT__CBR_H_
-#define CONSUMER_PRT__CBR_H_
+#ifndef BAD_CONSUMER_PRT__CBR_H_
+#define BAD_CONSUMER_PRT__CBR_H_
 
-#include "ns3/ndnSIM/apps/ndn-consumer-cbr.hpp"
+#include "ConsumerPRTCBR.hpp"
 
 #include <set>
 #include <map>
@@ -14,17 +14,16 @@
 #include <memory>
 
 /**
- * Make your life easier, inherit defaults of ns3::ndn::ConsumerCBR
+ *  A bad consumer, simply responds to any incoming data packet with a
+ *  report interest.
 ***/
 
 namespace ns3 {
 namespace ndn {
-		class ConsumerPRTCBR : public ConsumerCbr {
+		class BadConsumerPRTCBR : public ConsumerPRTCBR {
 			public:
 				static TypeId GetTypeId();
 				void OnData(std::shared_ptr<const Data> data);
-				void SendPacket();
-				void SendInterest();
 				void HandleInvalidPacket();	//temp
 		};
 

@@ -10,6 +10,7 @@
 
 #include "ConsumerPRTCBR.hpp"
 #include "ProducerPRT.hpp"
+#include "BadConsumerPRTCBR.hpp"
 
 namespace ns3 {
 	using ns3::ndn::StackHelper;
@@ -128,6 +129,7 @@ namespace ns3 {
 
 		// Getting containers for the consumer/producer
 		Ptr<Node> producer1 = Names::Find<Node>("producer");
+		//Ptr<Node> badProducer = Names::Find<Node>("badProducer");
 		NodeContainer consumerNodes;
 		consumerNodes.Add(Names::Find<Node>("group-1-node-1"));
 		consumerNodes.Add(Names::Find<Node>("group-1-node-2"));
@@ -136,14 +138,13 @@ namespace ns3 {
 		std::string prefix = "/prefix";
 		AppHelper consumerHelper("ns3::ndn::ConsumerPRTCBR");
 		consumerHelper.SetPrefix(prefix);
-		consumerHelper.SetAttribute("Frequency", StringValue("10")); // 100 interests a second
+		consumerHelper.SetAttribute("Frequency", StringValue("1")); // 100 interests a second
 		consumerHelper.Install(consumerNodes);
 
-		AppHelper producerHelper("ns3::ndn::ProducerPRT");
+		AppHelper producerHelper("ns3::ndn::Producer");
 		producerHelper.SetPrefix(prefix);
 		producerHelper.SetAttribute("PayloadSize", StringValue("1024"));
 		producerHelper.Install(producer1);
-		//producerHelper.Install(producer2);
 
 		// ndn::AppHelper badProducerHelper("ns3::ndn::ProducerPRT");
 		// badProducerHelper.SetPrefix(prefix);
@@ -152,7 +153,7 @@ namespace ns3 {
 
 		// Add /prefix origins to ndn::GlobalRouter
 		ndnGlobalRoutingHelper.AddOrigins(prefix, producer1);
-		//ndnGlobalRoutingHelper.AddOrigins(prefix, producer2);
+		//ndnGlobalRoutingHelper.AddOrigins(prefix, badProducer);
 
 		// Calculate and install FIBs
 		GlobalRoutingHelper::CalculateRoutes();
